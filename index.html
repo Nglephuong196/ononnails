@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>OnOn Nails Bar - Premium Nails & Hair Wash</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                overflow-x: hidden;
+            }
+
+            .language-switch {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1000;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 25px;
+                padding: 8px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .lang-btn {
+                background: none;
+                border: none;
+                padding: 8px 16px;
+                margin: 0 4px;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-weight: 500;
+                color: #8b7355;
+            }
+
+            .lang-btn.active {
+                background: #8b7355;
+                color: white;
+            }
+
+            .lang-btn:hover:not(.active) {
+                background: rgba(139, 115, 85, 0.1);
+            }
+
+            .beige-gradient-bg {
+                background: linear-gradient(
+                    135deg,
+                    #f5f1eb 0%,
+                    #efe8de 25%,
+                    #f0ebe3 50%,
+                    #f2ede5 75%,
+                    #f4efea 100%
+                );
+                position: relative;
+            }
+
+            .beige-gradient-bg::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-image: radial-gradient(
+                        circle at 20% 30%,
+                        rgba(139, 115, 85, 0.1) 0%,
+                        transparent 50%
+                    ),
+                    radial-gradient(
+                        circle at 80% 70%,
+                        rgba(160, 140, 115, 0.1) 0%,
+                        transparent 50%
+                    ),
+                    radial-gradient(
+                        circle at 40% 80%,
+                        rgba(180, 160, 140, 0.08) 0%,
+                        transparent 50%
+                    ),
+                    radial-gradient(
+                        circle at 60% 20%,
+                        rgba(200, 180, 160, 0.1) 0%,
+                        transparent 50%
+                    );
+                opacity: 0.8;
+            }
+
+            .nail-decorations {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                overflow: hidden;
+            }
+
+            .nail-decoration {
+                position: absolute;
+                opacity: 0.4;
+                animation: floatNail 12s infinite ease-in-out;
+                color: #8b7355;
+            }
+
+            .nail1 {
+                top: 15%;
+                left: 10%;
+                font-size: 3rem;
+                animation-delay: 0s;
+            }
+
+            .nail2 {
+                top: 60%;
+                right: 15%;
+                font-size: 2.5rem;
+                animation-delay: -4s;
+            }
+
+            .nail3 {
+                top: 35%;
+                left: 75%;
+                font-size: 2rem;
+                animation-delay: -8s;
+            }
+
+            .nail4 {
+                top: 75%;
+                left: 20%;
+                font-size: 2.8rem;
+                animation-delay: -2s;
+            }
+
+            .nail5 {
+                top: 25%;
+                right: 35%;
+                font-size: 2.2rem;
+                animation-delay: -6s;
+            }
+
+            @keyframes floatNail {
+                0%,
+                100% {
+                    transform: translateY(0px) rotate(0deg);
+                    opacity: 0.2;
+                }
+                25% {
+                    transform: translateY(-20px) rotate(5deg);
+                    opacity: 0.4;
+                }
+                50% {
+                    transform: translateY(-10px) rotate(-3deg);
+                    opacity: 0.6;
+                }
+                75% {
+                    transform: translateY(-15px) rotate(2deg);
+                    opacity: 0.3;
+                }
+            }
+
+            .hero {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .hero-content {
+                text-align: center;
+                color: #4a4a4a;
+                animation: fadeInUp 1s ease-out;
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+                font-weight: 300;
+                margin-bottom: 0.5rem;
+                color: #8b7355;
+                letter-spacing: 2px;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+                color: #8b7355;
+                margin-bottom: 2rem;
+                font-weight: 400;
+                letter-spacing: 1px;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                opacity: 0.8;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+                color: #666;
+            }
+
+            .cta-button {
+                display: inline-block;
+                padding: 18px 40px;
+                background: #8b7355;
+                color: white;
+                text-decoration: none;
+                border-radius: 30px;
+                font-weight: 500;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 8px 25px rgba(139, 115, 85, 0.3);
+                position: relative;
+                overflow: hidden;
+                letter-spacing: 0.5px;
+            }
+
+            .cta-button::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent
+                );
+                transition: left 0.5s;
+            }
+
+            .cta-button:hover::before {
+                left: 100%;
+            }
+
+            .cta-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 35px rgba(139, 115, 85, 0.4);
+                background: #a08266;
+            }
+
+            .gallery-section {
+                padding: 100px 0;
+                background: #fff;
+            }
+
+            .section-title {
+                text-align: center;
+                font-size: 2.5rem;
+                margin-bottom: 3rem;
+                color: #8b7355;
+                position: relative;
+                font-weight: 300;
+                letter-spacing: 1px;
+            }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background: #8b7355;
+                border-radius: 2px;
+            }
+
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                margin-top: 4rem;
+            }
+
+            .gallery-item {
+                position: relative;
+                aspect-ratio: 1;
+                border-radius: 15px;
+                overflow: hidden;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                background: #f5f5f5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #8b7355;
+                font-size: 1.1rem;
+                text-align: center;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .gallery-item:hover {
+                transform: scale(1.05);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.1);
+            }
+
+            .menu-section {
+                padding: 100px 0;
+                background: #fafaf8;
+            }
+
+            .menu-categories {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 3rem;
+                margin-top: 4rem;
+            }
+
+            .menu-category {
+                background: #fff;
+                padding: 2rem;
+                border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                border: 2px solid #f8f9fa;
+                transition: all 0.3s ease;
+            }
+
+            .menu-category:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+                border-color: #8b7355;
+            }
+
+            .category-title {
+                font-size: 1.8rem;
+                color: #8b7355;
+                margin-bottom: 1.5rem;
+                text-align: center;
+                font-weight: 400;
+                letter-spacing: 0.5px;
+            }
+
+            .menu-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 0;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .menu-item:last-child {
+                border-bottom: none;
+            }
+
+            .item-info {
+                flex: 1;
+            }
+
+            .item-name {
+                font-weight: 500;
+                color: #333;
+                margin-bottom: 0.5rem;
+            }
+
+            .item-description {
+                font-size: 0.9rem;
+                color: #666;
+                line-height: 1.4;
+            }
+
+            .item-price {
+                font-weight: 600;
+                color: #8b7355;
+                font-size: 1.1rem;
+                margin-left: 1rem;
+            }
+
+            .services {
+                padding: 100px 0;
+                background: #fff;
+            }
+
+            .services-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 4rem;
+            }
+
+            .service-card {
+                background: white;
+                padding: 3rem 2rem;
+                border-radius: 20px;
+                text-align: center;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                border: 2px solid #f8f9fa;
+            }
+
+            .service-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: #8b7355;
+                transform: scaleX(0);
+                transition: transform 0.3s ease;
+            }
+
+            .service-card:hover::before {
+                transform: scaleX(1);
+            }
+
+            .service-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+                border-color: #8b7355;
+            }
+
+            .service-icon {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 1.5rem;
+                background: #8b7355;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
+                color: white;
+            }
+
+            .service-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: #8b7355;
+                font-weight: 400;
+            }
+
+            .service-card p {
+                color: #718096;
+                line-height: 1.6;
+            }
+
+            .testimonials {
+                padding: 100px 0;
+                background: #8b7355;
+                color: white;
+            }
+
+            .testimonials .section-title {
+                color: white;
+            }
+
+            .testimonials .section-title::after {
+                background: white;
+            }
+
+            .testimonial-slider {
+                position: relative;
+                max-width: 900px;
+                margin: 0 auto;
+                overflow: hidden;
+                border-radius: 25px;
+            }
+
+            .testimonial-track {
+                display: flex;
+                transition: transform 0.5s ease;
+            }
+
+            .testimonial-card {
+                flex: 0 0 100%;
+                background: rgba(255, 255, 255, 0.15);
+                padding: 4rem 3rem;
+                backdrop-filter: blur(15px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 300px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .stars {
+                color: #ffd700;
+                font-size: 2rem;
+                margin-bottom: 2rem;
+                letter-spacing: 4px;
+            }
+
+            .testimonial-text {
+                font-size: 1.3rem;
+                line-height: 1.8;
+                margin-bottom: 2rem;
+                font-style: italic;
+                max-width: 700px;
+                font-weight: 300;
+            }
+
+            .testimonial-author {
+                font-weight: 600;
+                font-size: 1.2rem;
+                color: #ffd700;
+            }
+
+            .slider-nav {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 3rem;
+                margin-top: 3rem;
+            }
+
+            .slider-btn {
+                background: rgba(255, 255, 255, 0.2);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                color: white;
+                font-size: 2rem;
+                padding: 15px 20px;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                min-width: 60px;
+                min-height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+            }
+
+            .slider-btn:hover {
+                background: rgba(255, 255, 255, 0.3);
+                border-color: rgba(255, 255, 255, 0.5);
+                transform: scale(1.1);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .slider-dots {
+                display: flex;
+                gap: 1rem;
+            }
+
+            .dot {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.4);
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+            }
+
+            .dot.active {
+                background: #ffd700;
+                transform: scale(1.3);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .dot:hover:not(.active) {
+                background: rgba(255, 255, 255, 0.6);
+                transform: scale(1.1);
+            }
+
+            .contact {
+                padding: 100px 0;
+                background: #2c2c2c;
+                color: white;
+                text-align: center;
+            }
+
+            .contact .section-title {
+                color: white;
+            }
+
+            .contact .section-title::after {
+                background: #8b7355;
+            }
+
+            .contact-info {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .contact-item {
+                padding: 2rem;
+                background: #3a3a3a;
+                border-radius: 15px;
+                transition: transform 0.3s ease;
+            }
+
+            .contact-item:hover {
+                transform: translateY(-5px);
+            }
+
+            .contact-icon {
+                width: 60px;
+                height: 60px;
+                margin: 0 auto 1rem;
+                background: #8b7355;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+            }
+
+            .hidden {
+                display: none !important;
+            }
+
+            @media (max-width: 768px) {
+                .hero h1 {
+                    font-size: 2.5rem;
+                }
+
+                .hero p {
+                    font-size: 1rem;
+                }
+
+                .section-title {
+                    font-size: 2rem;
+                }
+
+                .services-grid,
+                .menu-categories,
+                .gallery-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .menu-categories {
+                    gap: 2rem;
+                }
+
+                .language-switch {
+                    top: 10px;
+                    right: 10px;
+                }
+
+                .testimonial-card {
+                    padding: 3rem 2rem;
+                    min-height: 280px;
+                }
+
+                .testimonial-text {
+                    font-size: 1.1rem;
+                    line-height: 1.6;
+                }
+
+                .stars {
+                    font-size: 1.8rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                .slider-nav {
+                    gap: 2rem;
+                    margin-top: 2rem;
+                }
+
+                .slider-btn {
+                    font-size: 1.8rem;
+                    padding: 12px 16px;
+                    min-width: 50px;
+                    min-height: 50px;
+                }
+
+                .dot {
+                    width: 14px;
+                    height: 14px;
+                }
+            }
+
+            @keyframes floatUp {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 0.3;
+                }
+                10% {
+                    opacity: 0.7;
+                }
+                90% {
+                    opacity: 0.7;
+                }
+                100% {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="language-switch">
+            <button class="lang-btn active" onclick="switchLanguage('en')">
+                EN
+            </button>
+            <button class="lang-btn" onclick="switchLanguage('vi')">VI</button>
+        </div>
+
+        <section class="hero beige-gradient-bg">
+            <div class="nail-decorations">
+                <div class="nail-decoration nail1">💅</div>
+                <div class="nail-decoration nail2">💆‍♀️</div>
+                <div class="nail-decoration nail3">✨</div>
+                <div class="nail-decoration nail4">🌿</div>
+                <div class="nail-decoration nail5">💎</div>
+            </div>
+
+            <div class="container">
+                <div class="hero-content">
+                    <!-- English Content -->
+                    <div class="lang-content" data-lang="en">
+                        <h1>OnOn</h1>
+                        <div class="subtitle">Nails & Hair wash</div>
+                        <p>
+                            Experience luxury and relaxation at OnOn Nails Bar.
+                            Premium nail care and soothing hair treatments in
+                            one beautiful space.
+                        </p>
+                        <a href="#contact" class="cta-button"
+                            >Book Your Session Today</a
+                        >
+                    </div>
+
+                    <!-- Vietnamese Content -->
+                    <div class="lang-content hidden" data-lang="vi">
+                        <h1>OnOn</h1>
+                        <div class="subtitle">Nails & Hair wash</div>
+                        <p>
+                            Trải nghiệm sự sang trọng và thư giãn tại OnOn Nails
+                            Bar. Chăm sóc móng cao cấp và liệu trình tóc nhẹ
+                            nhàng trong một không gian tuyệt đẹp.
+                        </p>
+                        <a href="#contact" class="cta-button"
+                            >Đặt Lịch Ngay Hôm Nay</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spa Gallery Section -->
+        <section class="gallery-section" id="spa-gallery">
+            <div class="container">
+                <!-- English Gallery -->
+                <div class="lang-content" data-lang="en">
+                    <h2 class="section-title">Our Beautiful Spa</h2>
+
+                    <div
+                        class="gallery-grid"
+                        style="
+                            grid-template-columns: 1fr;
+                            max-width: 600px;
+                            margin: 0 auto;
+                        "
+                    >
+                        <div class="gallery-item" style="aspect-ratio: 16/9">
+                            <div>
+                                📹 Spa Tour Video<br />Upload your spa tour
+                                video here
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vietnamese Gallery -->
+                <div class="lang-content hidden" data-lang="vi">
+                    <h2 class="section-title">Không Gian Spa Đẹp</h2>
+
+                    <div
+                        class="gallery-grid"
+                        style="
+                            grid-template-columns: 1fr;
+                            max-width: 600px;
+                            margin: 0 auto;
+                        "
+                    >
+                        <div class="gallery-item" style="aspect-ratio: 16/9">
+                            <div>
+                                📹 Video Giới Thiệu Spa<br />Tải video giới
+                                thiệu spa của bạn tại đây
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nail Samples Gallery Section -->
+        <section
+            class="gallery-section"
+            id="nail-gallery"
+            style="background: #fafaf8"
+        >
+            <div class="container">
+                <!-- English Gallery -->
+                <div class="lang-content" data-lang="en">
+                    <h2 class="section-title">Nail Art Gallery</h2>
+
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <div>
+                                Classic French<br />📸 Upload nail samples
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>Gel Designs<br />📸 Upload your work</div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>Nail Art<br />📸 Upload creative designs</div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>
+                                Seasonal Styles<br />📸 Upload themed nails
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>
+                                Bridal Collection<br />📸 Upload wedding nails
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>
+                                Trendy Colors<br />📸 Upload latest trends
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>
+                                Pedicure Designs<br />📸 Upload foot nail art
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>
+                                Special Occasions<br />📸 Upload event nails
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vietnamese Gallery -->
+                <div class="lang-content hidden" data-lang="vi">
+                    <h2 class="section-title">Bộ Sưu Tập Nail Art</h2>
+
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <div>French Cổ Điển<br />📸 Tải mẫu nail</div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>Thiết Kế Gel<br />📸 Tải tác phẩm của bạn</div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>Nail Art<br />📸 Tải thiết kế sáng tạo</div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>
+                                Phong Cách Theo Mùa<br />📸 Tải nail theo chủ đề
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>Bộ Sưu Tập Cô Dâu<br />📸 Tải nail cưới</div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>Màu Sắc Trendy<br />📸 Tải xu hướng mới</div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>
+                                Thiết Kế Pedicure<br />📸 Tải nail art chân
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div>Dịp Đặc Biệt<br />📸 Tải nail sự kiện</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-section" id="menu">
+            <div class="container">
+                <!-- English Menu -->
+                <div class="lang-content" data-lang="en">
+                    <h2 class="section-title">Our Menu & Pricing</h2>
+
+                    <div class="menu-categories">
+                        <div class="menu-category">
+                            <h3 class="category-title">Basic Nail Services</h3>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Gel Polish Removal
+                                    </div>
+                                    <div class="item-description">
+                                        Safe removal of gel polish
+                                    </div>
+                                </div>
+                                <div class="item-price">30.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Hard Gel/Acrylic Removal
+                                    </div>
+                                    <div class="item-description">
+                                        Difficult cases removal
+                                    </div>
+                                </div>
+                                <div class="item-price">40.000-60.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Cuticle Care & Shaping
+                                    </div>
+                                    <div class="item-description">
+                                        Cuticle care and nail shaping
+                                    </div>
+                                </div>
+                                <div class="item-price">40.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Premium Base Coat
+                                    </div>
+                                    <div class="item-description">
+                                        Strengthening base coat
+                                    </div>
+                                </div>
+                                <div class="item-price">50.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Premium Gel Polish
+                                    </div>
+                                    <div class="item-description">
+                                        High-quality gel polish
+                                    </div>
+                                </div>
+                                <div class="item-price">150.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Premium Cat-Eye Gel
+                                    </div>
+                                    <div class="item-description">
+                                        Magnetic cat-eye effect
+                                    </div>
+                                </div>
+                                <div class="item-price">180.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Extra Cat-Eye Effect
+                                    </div>
+                                    <div class="item-description">
+                                        Additional cat-eye enhancement
+                                    </div>
+                                </div>
+                                <div class="item-price">70.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Nail Fill</div>
+                                    <div class="item-description">
+                                        Maintenance and refill
+                                    </div>
+                                </div>
+                                <div class="item-price">50.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        The Gel Bottle - BiAB
+                                    </div>
+                                    <div class="item-description">
+                                        Premium builder gel in a bottle
+                                    </div>
+                                </div>
+                                <div class="item-price">300.000-600.000đ</div>
+                            </div>
+                        </div>
+
+                        <div class="menu-category">
+                            <h3 class="category-title">
+                                Nail Extensions & Tips
+                            </h3>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Glue Tips Extensions
+                                    </div>
+                                    <div class="item-description">
+                                        Professional nail extensions with tips
+                                    </div>
+                                </div>
+                                <div class="item-price">150.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Modern Nail Tips (X-Gel)
+                                    </div>
+                                    <div class="item-description">
+                                        Modern X-Gel technique extensions
+                                    </div>
+                                </div>
+                                <div class="item-price">200.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Fill-in Extensions
+                                    </div>
+                                    <div class="item-description">
+                                        Extension fill-in with X-Gel
+                                    </div>
+                                </div>
+                                <div class="item-price">120.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        BBM Gel Extensions
+                                    </div>
+                                    <div class="item-description">
+                                        Premium BBM gel extensions
+                                    </div>
+                                </div>
+                                <div class="item-price">250.000-300.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Acrylic Extensions
+                                    </div>
+                                    <div class="item-description">
+                                        Professional acrylic nail extensions
+                                    </div>
+                                </div>
+                                <div class="item-price">300.000-350.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Nail Foundation</div>
+                                    <div class="item-description">
+                                        Base foundation for nail structure
+                                    </div>
+                                </div>
+                                <div class="item-price">80.000-100.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Dual Form Nail</div>
+                                    <div class="item-description">
+                                        Advanced dual form technique
+                                    </div>
+                                </div>
+                                <div class="item-price">250.000đ</div>
+                            </div>
+                        </div>
+
+                        <div class="menu-category">
+                            <h3 class="category-title">
+                                Nail Art & Decoration
+                            </h3>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">French Tips</div>
+                                    <div class="item-description">
+                                        Classic French manicure
+                                    </div>
+                                </div>
+                                <div class="item-price">15.000-20.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Simple Art</div>
+                                    <div class="item-description">
+                                        Lines, dots, minimalist designs
+                                    </div>
+                                </div>
+                                <div class="item-price">5.000-20.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Detailed Art</div>
+                                    <div class="item-description">
+                                        Cartoon, 3D art, complex designs
+                                    </div>
+                                </div>
+                                <div class="item-price">20.000-50.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Crystals, Charms, Beads
+                                    </div>
+                                    <div class="item-description">
+                                        Decorative elements and accessories
+                                    </div>
+                                </div>
+                                <div class="item-price">5.000-30.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Effect Polishes</div>
+                                    <div class="item-description">
+                                        Glitter, flash, beads, mother-of-pearl
+                                    </div>
+                                </div>
+                                <div class="item-price">10.000-20.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Ombre, Mirror Chrome
+                                    </div>
+                                    <div class="item-description">
+                                        Gradient and mirror effects
+                                    </div>
+                                </div>
+                                <div class="item-price">15.000-20.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Embedded Gel Design
+                                    </div>
+                                    <div class="item-description">
+                                        Complex embedded gel accessories
+                                    </div>
+                                </div>
+                                <div class="item-price">10.000-40.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Nail Stickers</div>
+                                    <div class="item-description">
+                                        Professional nail stickers
+                                    </div>
+                                </div>
+                                <div class="item-price">5.000-15.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Mixed Polish (3 colors)
+                                    </div>
+                                    <div class="item-description">
+                                        Custom color combination
+                                    </div>
+                                </div>
+                                <div class="item-price">30.000đ</div>
+                            </div>
+                        </div>
+
+                        <div class="menu-category">
+                            <h3 class="category-title">Hair Wash Services</h3>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Clean & Fresh (20')
+                                    </div>
+                                    <div class="item-description">
+                                        Shampoo (2 times), conditioner, blow
+                                        dry, hair mist
+                                    </div>
+                                </div>
+                                <div class="item-price">79.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Soft & Smooth (35')
+                                    </div>
+                                    <div class="item-description">
+                                        Makeup removal, face wash, shampoo (2
+                                        times), conditioner, head and face
+                                        massage, blow dry, hair mist
+                                    </div>
+                                </div>
+                                <div class="item-price">129.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Shiny & Radiant (50')
+                                    </div>
+                                    <div class="item-description">
+                                        Makeup removal, face wash, scalp
+                                        exfoliation, shampoo (2 times),
+                                        conditioner, hair treatment mask, head,
+                                        face & neck-shoulder massage, blow dry,
+                                        hair mist
+                                    </div>
+                                </div>
+                                <div class="item-price">179.000đ</div>
+                            </div>
+                        </div>
+
+                        <div class="menu-category">
+                            <h3 class="category-title">Additional Services</h3>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Hand/Foot Massage
+                                    </div>
+                                    <div class="item-description">
+                                        Relaxing massage treatment
+                                    </div>
+                                </div>
+                                <div class="item-price">150.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Foot Care Treatment
+                                    </div>
+                                    <div class="item-description">
+                                        Including detoxification, exfoliation
+                                        and mask
+                                    </div>
+                                </div>
+                                <div class="item-price">250.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Extra Head/Neck Massage
+                                    </div>
+                                    <div class="item-description">
+                                        Additional 15 minutes massage
+                                    </div>
+                                </div>
+                                <div class="item-price">59.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Facial Mask</div>
+                                    <div class="item-description">
+                                        Nourishing facial treatment
+                                    </div>
+                                </div>
+                                <div class="item-price">49.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Hair Mask</div>
+                                    <div class="item-description">
+                                        Deep conditioning treatment
+                                    </div>
+                                </div>
+                                <div class="item-price">49.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Scalp/Facial Exfoliation
+                                    </div>
+                                    <div class="item-description">
+                                        Gentle exfoliation treatment
+                                    </div>
+                                </div>
+                                <div class="item-price">49.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Makeup Removal & Face Wash
+                                    </div>
+                                    <div class="item-description">
+                                        Complete cleansing service
+                                    </div>
+                                </div>
+                                <div class="item-price">49.000đ</div>
+                            </div>
+                        </div>
+
+                        <div class="menu-category">
+                            <h3 class="category-title">Special Combos</h3>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Combo 289K</div>
+                                    <div class="item-description">
+                                        Gel removal, cuticle care, shaping,
+                                        premium gel (+30K for cat-eye)
+                                    </div>
+                                </div>
+                                <div class="item-price">289.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Combo 469K</div>
+                                    <div class="item-description">
+                                        Gel removal, cuticle care, extensions,
+                                        premium gel, choice of
+                                        French/Ombre/Mirror
+                                    </div>
+                                </div>
+                                <div class="item-price">469.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Hair & Nail Combo
+                                    </div>
+                                    <div class="item-description">
+                                        Beautiful hands & gorgeous hair package
+                                    </div>
+                                </div>
+                                <div class="item-price">179.000-469.000đ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vietnamese Menu -->
+                <div class="lang-content hidden" data-lang="vi">
+                    <h2 class="section-title">Menu & Bảng Giá</h2>
+
+                    <div class="menu-categories">
+                        <div class="menu-category">
+                            <h3 class="category-title">Dịch Vụ Nail Cơ Bản</h3>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Phá Sơn Gel</div>
+                                    <div class="item-description">
+                                        Tẩy sơn gel an toàn
+                                    </div>
+                                </div>
+                                <div class="item-price">30.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Phá/Tháo Móng Giả, Gel, Bột Cứng
+                                    </div>
+                                    <div class="item-description">
+                                        Tháo bỏ móng khó (trường hợp khó)
+                                    </div>
+                                </div>
+                                <div class="item-price">40.000-60.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Cắt Da, Sửa Móng
+                                    </div>
+                                    <div class="item-description">
+                                        Chăm sóc da quanh móng và tạo dáng móng
+                                        (không sơn vẽ)
+                                    </div>
+                                </div>
+                                <div class="item-price">40.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Sơn Cứng Móng Cao Cấp
+                                    </div>
+                                    <div class="item-description">
+                                        Lớp lót cứng móng cao cấp
+                                    </div>
+                                </div>
+                                <div class="item-price">50.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Sơn Gel, Sơn Thạch Cao Cấp
+                                    </div>
+                                    <div class="item-description">
+                                        Sơn gel, sơn thạch cao cấp
+                                    </div>
+                                </div>
+                                <div class="item-price">150.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Sơn Mắt Mèo Cao Cấp
+                                    </div>
+                                    <div class="item-description">
+                                        Sơn mắt mèo cao cấp
+                                    </div>
+                                </div>
+                                <div class="item-price">180.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Thêm Hiệu Ứng Mắt Mèo
+                                    </div>
+                                    <div class="item-description">
+                                        Hiệu ứng mắt mèo bổ sung
+                                    </div>
+                                </div>
+                                <div class="item-price">70.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Đắm Đầu Móng</div>
+                                    <div class="item-description">
+                                        Bảo dưỡng và làm lại
+                                    </div>
+                                </div>
+                                <div class="item-price">50.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">The Gel Bottle</div>
+                                    <div class="item-description">
+                                        BiAB - Gel cao cấp trong chai
+                                    </div>
+                                </div>
+                                <div class="item-price">300.000-600.000đ</div>
+                            </div>
+                        </div>
+
+                        <div class="menu-category">
+                            <h3 class="category-title">Nối/Ép Móng & Tip</h3>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Ép Móng Keo</div>
+                                    <div class="item-description">
+                                        Nối móng bằng keo và tip
+                                    </div>
+                                </div>
+                                <div class="item-price">150.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Ép Móng Kỹ Thuật Mới (X-Gel)
+                                    </div>
+                                    <div class="item-description">
+                                        Kỹ thuật ép móng X-Gel hiện đại
+                                    </div>
+                                </div>
+                                <div class="item-price">200.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Fill Móng Nối/Ép X-Gel
+                                    </div>
+                                    <div class="item-description">
+                                        Làm lại móng nối với X-Gel
+                                    </div>
+                                </div>
+                                <div class="item-price">120.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Nối Móng Đắp Gel BBM
+                                    </div>
+                                    <div class="item-description">
+                                        Nối móng bằng gel BBM cao cấp
+                                    </div>
+                                </div>
+                                <div class="item-price">250.000-300.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Nối Móng Đắp Bột
+                                    </div>
+                                    <div class="item-description">
+                                        Nối móng bằng bột acrylic
+                                    </div>
+                                </div>
+                                <div class="item-price">300.000-350.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Tạo Cấu Móng</div>
+                                    <div class="item-description">
+                                        Tạo nền móng cơ bản
+                                    </div>
+                                </div>
+                                <div class="item-price">80.000-100.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Dual Form Nail</div>
+                                    <div class="item-description">
+                                        Kỹ thuật dual form tiên tiến
+                                    </div>
+                                </div>
+                                <div class="item-price">250.000đ</div>
+                            </div>
+                        </div>
+
+                        <div class="menu-category">
+                            <h3 class="category-title">
+                                Trang Trí Móng/Nail Art & Decoration
+                            </h3>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">French Đầu Móng</div>
+                                    <div class="item-description">
+                                        Vẽ French cổ điển
+                                    </div>
+                                </div>
+                                <div class="item-price">15.000-20.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Vẽ Đơn Giản</div>
+                                    <div class="item-description">
+                                        Vẽ line, chấm bi, ít nét
+                                    </div>
+                                </div>
+                                <div class="item-price">5.000-20.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Vẽ Cầu Kỳ</div>
+                                    <div class="item-description">
+                                        Hoạt hình, nhiều nét, gel nổi
+                                    </div>
+                                </div>
+                                <div class="item-price">20.000-50.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Hạt, Đá Trang Trí, Charm Nails
+                                    </div>
+                                    <div class="item-description">
+                                        Đá, charm, hạt trang trí
+                                    </div>
+                                </div>
+                                <div class="item-price">5.000-30.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Sơn Hiệu Ứng</div>
+                                    <div class="item-description">
+                                        Nhũ, mắt mèo, flash, kim tuyến, xà cừ,
+                                        cầu vồng, loang màu, vân đá, thủy tinh,
+                                        dán line
+                                    </div>
+                                </div>
+                                <div class="item-price">10.000-20.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Ombre, Tráng Gương
+                                    </div>
+                                    <div class="item-description">
+                                        Hiệu ứng gradient và tráng gương
+                                    </div>
+                                </div>
+                                <div class="item-price">15.000-20.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Design Ấn Gel, Phụ Kiện
+                                    </div>
+                                    <div class="item-description">
+                                        Thiết kế gel ấn và phụ kiện phức tạp
+                                    </div>
+                                </div>
+                                <div class="item-price">10.000-40.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Nails Sticker</div>
+                                    <div class="item-description">
+                                        Dán sticker nail chuyên nghiệp
+                                    </div>
+                                </div>
+                                <div class="item-price">5.000-15.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Sơn Mix Từ 3 Màu
+                                    </div>
+                                    <div class="item-description">
+                                        Pha trộn màu tùy chỉnh từ 3 màu
+                                    </div>
+                                </div>
+                                <div class="item-price">30.000đ</div>
+                            </div>
+                        </div>
+
+                        <div class="menu-category">
+                            <h3 class="category-title">Dịch Vụ Gội Đầu</h3>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Sạch Thơm/Clean & Fresh (20')
+                                    </div>
+                                    <div class="item-description">
+                                        Gội 2 lần - xả đầu - sấy tóc - xịt dưỡng
+                                    </div>
+                                </div>
+                                <div class="item-price">79.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Mềm Mượt/Soft & Smooth (35')
+                                    </div>
+                                    <div class="item-description">
+                                        Tẩy trang - rửa mặt - gội 2 lần - xả đầu
+                                        - massage đầu và mặt - sấy tóc - xịt
+                                        dưỡng
+                                    </div>
+                                </div>
+                                <div class="item-price">129.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Óng Ánh/Shiny & Radiant (50')
+                                    </div>
+                                    <div class="item-description">
+                                        Tẩy trang - rửa mặt - tẩy tế bào chết da
+                                        đầu - gội 2 lần - xả đầu - ủ dưỡng -
+                                        massage đầu, mặt và cổ vai gáy - sấy tóc
+                                        - xịt dưỡng
+                                    </div>
+                                </div>
+                                <div class="item-price">179.000đ</div>
+                            </div>
+                        </div>
+
+                        <div class="menu-category">
+                            <h3 class="category-title">
+                                Dịch Vụ Thêm/Additional Services
+                            </h3>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Massage Tay/Chân
+                                    </div>
+                                    <div class="item-description">
+                                        Massage thư giãn tay/chân
+                                    </div>
+                                </div>
+                                <div class="item-price">150.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Chăm Sóc Chân Chuyên Sâu
+                                    </div>
+                                    <div class="item-description">
+                                        Bao gồm thải độc, tẩy tế bào chết và đắp
+                                        mặt nạ
+                                    </div>
+                                </div>
+                                <div class="item-price">250.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Massage Đầu Và/Hoặc Cổ Vai Gáy Thêm
+                                    </div>
+                                    <div class="item-description">
+                                        Massage bổ sung 15 phút
+                                    </div>
+                                </div>
+                                <div class="item-price">59.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Mặt Nạ Dưỡng Da</div>
+                                    <div class="item-description">
+                                        Mặt nạ chăm sóc da mặt
+                                    </div>
+                                </div>
+                                <div class="item-price">49.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Ủ Dưỡng Tóc</div>
+                                    <div class="item-description">
+                                        Mặt nạ dưỡng tóc sâu
+                                    </div>
+                                </div>
+                                <div class="item-price">49.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Tẩy Tế Bào Chết Da Mặt/Da Đầu
+                                    </div>
+                                    <div class="item-description">
+                                        Tẩy da chết nhẹ nhàng
+                                    </div>
+                                </div>
+                                <div class="item-price">49.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">
+                                        Tẩy Trang Và Rửa Mặt
+                                    </div>
+                                    <div class="item-description">
+                                        Dịch vụ làm sạch hoàn toàn
+                                    </div>
+                                </div>
+                                <div class="item-price">49.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Phụ Thu</div>
+                                    <div class="item-description">
+                                        Khách hàng có tóc nối: 30.000đ | Khách
+                                        hàng nam (áp dụng gói combo): 40.000đ |
+                                        Khách hàng tóc nhuộm ra màu: 50.000đ
+                                    </div>
+                                </div>
+                                <div class="item-price">30.000-50.000đ</div>
+                            </div>
+                        </div>
+
+                        <div class="menu-category">
+                            <h3 class="category-title">Combo Đặc Biệt</h3>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Combo 289K</div>
+                                    <div class="item-description">
+                                        Tháo gel & cắt da - cứng móng & tạo cấu
+                                        móng - sơn gel/thạch cao cấp (+30k cho
+                                        mắt mèo)
+                                    </div>
+                                </div>
+                                <div class="item-price">289.000đ</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <div class="item-name">Combo 469K</div>
+                                    <div class="item-description">
+                                        Tháo gel & cắt da - cứng móng & tạo cấu
+                                        móng - sơn gel/thạch cao cấp - chọn 1
+                                        trong 3 kiểu: Tráng gương | French |
+                                        Ombre
+                                    </div>
+                                </div>
+                                <div class="item-price">469.000đ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services" id="services">
+            <div class="container">
+                <!-- English Services -->
+                <div class="lang-content" data-lang="en">
+                    <h2 class="section-title">Our Premium Services</h2>
+
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">💅</div>
+                            <h3>Professional Nail Care</h3>
+                            <p>
+                                Expert nail treatments with premium products.
+                                From classic manicures to intricate nail art,
+                                our skilled technicians deliver perfection every
+                                time.
+                            </p>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="service-icon">🧴</div>
+                            <h3>Luxury Hair Wash</h3>
+                            <p>
+                                Rejuvenating hair treatments with premium
+                                products. Scalp massage and deep cleansing in a
+                                serene, spa-like environment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vietnamese Services -->
+                <div class="lang-content hidden" data-lang="vi">
+                    <h2 class="section-title">Dịch Vụ Cao Cấp</h2>
+
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">💅</div>
+                            <h3>Chăm Sóc Nail Chuyên Nghiệp</h3>
+                            <p>
+                                Liệu trình nail chuyên nghiệp với sản phẩm cao
+                                cấp. Từ nail cơ bản đến nail art phức tạp, kỹ
+                                thuật viên của chúng tôi mang đến sự hoàn hảo.
+                            </p>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="service-icon">🧴</div>
+                            <h3>Gội Đầu Cao Cấp</h3>
+                            <p>
+                                Liệu trình tóc thư giãn với sản phẩm cao cấp.
+                                Massage da đầu và làm sạch sâu trong không gian
+                                spa yên tĩnh.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <!-- English Testimonials -->
+                <div class="lang-content" data-lang="en">
+                    <h2 class="section-title">What Our Clients Say</h2>
+
+                    <div class="testimonial-slider">
+                        <div class="testimonial-track" id="testimonial-track">
+                            <div class="testimonial-card">
+                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="testimonial-text">
+                                    "Absolutely love OnOn Nails Bar! The
+                                    atmosphere is so relaxing and the nail art
+                                    is incredible. The staff is professional and
+                                    my nails always look perfect!"
+                                </div>
+                                <div class="testimonial-author">- Minh Anh</div>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="testimonial-text">
+                                    "Best nail salon experience ever! The staff
+                                    is professional, the space is beautiful, and
+                                    the hair wash service is divine. I always
+                                    leave feeling pampered and refreshed."
+                                </div>
+                                <div class="testimonial-author">- Thu Hằng</div>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="testimonial-text">
+                                    "OnOn has become my go-to place for
+                                    self-care. The combination of nail services
+                                    and hair treatments is perfect! My nails
+                                    always look amazing and the relaxing
+                                    atmosphere is wonderful."
+                                </div>
+                                <div class="testimonial-author">- Ngọc Mai</div>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="testimonial-text">
+                                    "I've been coming here for months and it
+                                    never disappoints. The attention to detail
+                                    is outstanding and the relaxing environment
+                                    makes every visit special."
+                                </div>
+                                <div class="testimonial-author">- Linh Chi</div>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="testimonial-text">
+                                    "Finally found my perfect nail salon! The
+                                    gel manicures last for weeks, the staff is
+                                    friendly, and the hair treatments are so
+                                    relaxing. Highly recommended!"
+                                </div>
+                                <div class="testimonial-author">
+                                    - Phương Thảo
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slider-nav">
+                            <button
+                                class="slider-btn"
+                                onclick="previousSlide()"
+                            >
+                                ‹
+                            </button>
+                            <div class="slider-dots" id="slider-dots-en">
+                                <div
+                                    class="dot active"
+                                    onclick="currentSlide(1)"
+                                ></div>
+                                <div
+                                    class="dot"
+                                    onclick="currentSlide(2)"
+                                ></div>
+                                <div
+                                    class="dot"
+                                    onclick="currentSlide(3)"
+                                ></div>
+                                <div
+                                    class="dot"
+                                    onclick="currentSlide(4)"
+                                ></div>
+                                <div
+                                    class="dot"
+                                    onclick="currentSlide(5)"
+                                ></div>
+                            </div>
+                            <button class="slider-btn" onclick="nextSlide()">
+                                ›
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vietnamese Testimonials -->
+                <div class="lang-content hidden" data-lang="vi">
+                    <h2 class="section-title">Khách Hàng Nói Gì</h2>
+
+                    <div class="testimonial-slider">
+                        <div
+                            class="testimonial-track"
+                            id="testimonial-track-vi"
+                        >
+                            <div class="testimonial-card">
+                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="testimonial-text">
+                                    "Tôi yêu OnOn Nails Bar! Không gian rất thư
+                                    giãn và nail art tuyệt đẹp. Nhân viên chuyên
+                                    nghiệp và móng của tôi luôn hoàn hảo!"
+                                </div>
+                                <div class="testimonial-author">- Minh Anh</div>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="testimonial-text">
+                                    "Trải nghiệm nail salon tuyệt vời nhất! Nhân
+                                    viên chuyên nghiệp, không gian đẹp, dịch vụ
+                                    gội đầu thần thánh. Tôi luôn rời đi với cảm
+                                    giác được chăm sóc tuyệt vời."
+                                </div>
+                                <div class="testimonial-author">- Thu Hằng</div>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="testimonial-text">
+                                    "OnOn đã trở thành nơi chăm sóc bản thân yêu
+                                    thích của tôi. Sự kết hợp giữa dịch vụ nail
+                                    và gội đầu thật hoàn hảo! Móng luôn đẹp và
+                                    không gian thư giãn tuyệt vời."
+                                </div>
+                                <div class="testimonial-author">- Ngọc Mai</div>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="testimonial-text">
+                                    "Tôi đã đến đây nhiều tháng và không bao giờ
+                                    thất vọng. Sự chú ý đến chi tiết rất tuyệt
+                                    và môi trường thư giãn làm mỗi lần đến đều
+                                    đặc biệt."
+                                </div>
+                                <div class="testimonial-author">- Linh Chi</div>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="testimonial-text">
+                                    "Cuối cùng tìm được nail salon hoàn hảo!
+                                    Nail gel giữ màu hàng tuần, nhân viên thân
+                                    thiện, và dịch vụ gội đầu rất thư giãn. Rất
+                                    khuyến khích!"
+                                </div>
+                                <div class="testimonial-author">
+                                    - Phương Thảo
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slider-nav">
+                            <button
+                                class="slider-btn"
+                                onclick="previousSlideVi()"
+                            >
+                                ‹
+                            </button>
+                            <div class="slider-dots" id="slider-dots-vi">
+                                <div
+                                    class="dot active"
+                                    onclick="currentSlideVi(1)"
+                                ></div>
+                                <div
+                                    class="dot"
+                                    onclick="currentSlideVi(2)"
+                                ></div>
+                                <div
+                                    class="dot"
+                                    onclick="currentSlideVi(3)"
+                                ></div>
+                                <div
+                                    class="dot"
+                                    onclick="currentSlideVi(4)"
+                                ></div>
+                                <div
+                                    class="dot"
+                                    onclick="currentSlideVi(5)"
+                                ></div>
+                            </div>
+                            <button class="slider-btn" onclick="nextSlideVi()">
+                                ›
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="container">
+                <!-- English Contact -->
+                <div class="lang-content" data-lang="en">
+                    <h2 class="section-title">Get In Touch</h2>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <h3>Call Us</h3>
+                            <p><a href="tel:+84392226086">039 222 6086</a></p>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <h3>Visit Us</h3>
+                            <p>
+                                46 Đường D5, Phường Thạnh Mỹ Tây<br />Thành phố
+                                Hồ Chí Minh
+                            </p>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">⏰</div>
+                            <h3>Hours</h3>
+                            <p>Mon-Sun: 9:00AM-8:30PM</p>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <h3>Email</h3>
+                            <p>ononnailsbar@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 3rem">
+                        <a href="tel:+84392226086" class="cta-button"
+                            >Book Your Appointment Now</a
+                        >
+                    </div>
+                </div>
+
+                <!-- Vietnamese Contact -->
+                <div class="lang-content hidden" data-lang="vi">
+                    <h2 class="section-title">Liên Hệ</h2>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <h3>Gọi Ngay</h3>
+                            <p><a href="tel:+84392226086">039 222 6086</a></p>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <h3>Địa Chỉ</h3>
+                            <p>
+                                46 Đường D5, Phường Thạnh Mỹ Tây<br />Thành phố
+                                Hồ Chí Minh
+                            </p>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">⏰</div>
+                            <h3>Giờ Mở Cửa</h3>
+                            <p>Thứ 2 - Chủ Nhật: 9:00h-20:30h</p>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <h3>Email</h3>
+                            <p>ononnailsbar@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 3rem">
+                        <a href="tel:+84392226086" class="cta-button"
+                            >Đặt Lịch Hẹn Ngay</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            let currentLang = 'en';
+            let currentSlideIndex = 1;
+            let currentSlideIndexVi = 1;
+            const totalSlides = 5;
+
+            function switchLanguage(lang) {
+                currentLang = lang;
+
+                // Update button states
+                document.querySelectorAll('.lang-btn').forEach((btn) => {
+                    btn.classList.remove('active');
+                });
+                document
+                    .querySelector(`[onclick="switchLanguage('${lang}')"]`)
+                    .classList.add('active');
+
+                // Hide all language content
+                document
+                    .querySelectorAll('.lang-content')
+                    .forEach((content) => {
+                        content.classList.add('hidden');
+                    });
+
+                // Show selected language content
+                document
+                    .querySelectorAll(`[data-lang="${lang}"]`)
+                    .forEach((content) => {
+                        content.classList.remove('hidden');
+                    });
+            }
+
+            // English Slider Functions
+            function showSlide(n) {
+                const track = document.getElementById('testimonial-track');
+                const dots = document.querySelectorAll('#slider-dots-en .dot');
+
+                if (n > totalSlides) currentSlideIndex = 1;
+                if (n < 1) currentSlideIndex = totalSlides;
+
+                track.style.transform = `translateX(-${
+                    (currentSlideIndex - 1) * 100
+                }%)`;
+
+                dots.forEach((dot) => dot.classList.remove('active'));
+                dots[currentSlideIndex - 1].classList.add('active');
+            }
+
+            function currentSlide(n) {
+                currentSlideIndex = n;
+                showSlide(currentSlideIndex);
+            }
+
+            function nextSlide() {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }
+
+            function previousSlide() {
+                currentSlideIndex--;
+                showSlide(currentSlideIndex);
+            }
+
+            // Vietnamese Slider Functions
+            function showSlideVi(n) {
+                const track = document.getElementById('testimonial-track-vi');
+                const dots = document.querySelectorAll('#slider-dots-vi .dot');
+
+                if (n > totalSlides) currentSlideIndexVi = 1;
+                if (n < 1) currentSlideIndexVi = totalSlides;
+
+                track.style.transform = `translateX(-${
+                    (currentSlideIndexVi - 1) * 100
+                }%)`;
+
+                dots.forEach((dot) => dot.classList.remove('active'));
+                dots[currentSlideIndexVi - 1].classList.add('active');
+            }
+
+            function currentSlideVi(n) {
+                currentSlideIndexVi = n;
+                showSlideVi(currentSlideIndexVi);
+            }
+
+            function nextSlideVi() {
+                currentSlideIndexVi++;
+                showSlideVi(currentSlideIndexVi);
+            }
+
+            function previousSlideVi() {
+                currentSlideIndexVi--;
+                showSlideVi(currentSlideIndexVi);
+            }
+
+            // Auto-play sliders
+            setInterval(() => {
+                if (currentLang === 'en') {
+                    nextSlide();
+                }
+            }, 5000);
+
+            setInterval(() => {
+                if (currentLang === 'vi') {
+                    nextSlideVi();
+                }
+            }, 5000);
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(
+                        this.getAttribute('href')
+                    );
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start',
+                        });
+                    }
+                });
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px',
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe cards for animation
+            document
+                .querySelectorAll(
+                    '.service-card, .menu-category, .gallery-item'
+                )
+                .forEach((card) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'all 0.6s ease';
+                    observer.observe(card);
+                });
+
+            // Add floating nail decorations dynamically
+            function createFloatingDecoration() {
+                const decorations = ['💅', '💆‍♀️', '✨', '🌿', '💎', '🌸'];
+                const decoration = document.createElement('div');
+                decoration.className = 'nail-decoration';
+                decoration.textContent =
+                    decorations[Math.floor(Math.random() * decorations.length)];
+
+                const size = Math.random() * 1.5 + 1.5;
+                decoration.style.fontSize = size + 'rem';
+                decoration.style.left = Math.random() * 100 + '%';
+                decoration.style.top = '100%';
+                decoration.style.color = '#8B7355';
+                decoration.style.animationDuration =
+                    Math.random() * 8 + 8 + 's';
+                decoration.style.animationDelay = '0s';
+                decoration.style.position = 'absolute';
+                decoration.style.pointerEvents = 'none';
+                decoration.style.animation = 'floatUp 10s linear forwards';
+                decoration.style.opacity = '0.3';
+
+                document
+                    .querySelector('.nail-decorations')
+                    .appendChild(decoration);
+
+                setTimeout(() => {
+                    decoration.remove();
+                }, 10000);
+            }
+
+            // Create new floating decorations periodically
+            setInterval(createFloatingDecoration, 4000);
+
+            // Initialize with some decorations
+            setTimeout(createFloatingDecoration, 1000);
+            setTimeout(createFloatingDecoration, 2000);
+            setTimeout(createFloatingDecoration, 3000);
+        </script>
+    </body>
+</html>

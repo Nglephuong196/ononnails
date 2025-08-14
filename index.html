@@ -169,6 +169,7 @@
                 opacity: 0.8;
             }
 
+            /* Enhanced Interactive Decorations */
             .nail-decorations {
                 position: absolute;
                 width: 100%;
@@ -182,12 +183,22 @@
                 opacity: 0.4;
                 animation: floatNail 12s infinite ease-in-out;
                 color: #8b7355;
+                cursor: pointer;
+                pointer-events: auto;
+                transition: all 0.3s ease;
+                font-size: 3rem;
+            }
+
+            .nail-decoration:hover {
+                transform: scale(1.5) rotate(15deg) !important;
+                opacity: 0.8 !important;
+                z-index: 10;
+                filter: drop-shadow(0 5px 15px rgba(139, 115, 85, 0.5));
             }
 
             .nail1 {
                 top: 15%;
                 left: 10%;
-                font-size: 3rem;
                 animation-delay: 0s;
             }
 
@@ -219,6 +230,17 @@
                 animation-delay: -6s;
             }
 
+            /* Additional floating decorations */
+            .floating-decoration {
+                position: fixed;
+                pointer-events: none;
+                font-size: 2rem;
+                opacity: 0.3;
+                z-index: 5;
+                animation: floatRandom 15s infinite ease-in-out;
+                color: #8b7355;
+            }
+
             @keyframes floatNail {
                 0%,
                 100% {
@@ -236,6 +258,46 @@
                 75% {
                     transform: translateY(-15px) rotate(2deg);
                     opacity: 0.3;
+                }
+            }
+
+            @keyframes floatRandom {
+                0% {
+                    transform: translate(0, 100vh) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 0.3;
+                }
+                90% {
+                    opacity: 0.3;
+                }
+                100% {
+                    transform: translate(20px, -100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+
+            /* Sparkle effect */
+            .sparkle {
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: #d4af37;
+                border-radius: 50%;
+                animation: sparkleAnim 2s infinite ease-in-out;
+                pointer-events: none;
+            }
+
+            @keyframes sparkleAnim {
+                0%,
+                100% {
+                    opacity: 0;
+                    transform: scale(0);
+                }
+                50% {
+                    opacity: 1;
+                    transform: scale(1);
                 }
             }
 
@@ -536,6 +598,54 @@
                         rgba(212, 175, 55, 0.03) 0%,
                         transparent 50%
                     );
+            }
+
+            /* Enhanced Video Gallery */
+            .video-gallery {
+                max-width: 800px;
+                margin: 4rem auto 0;
+                text-align: center;
+            }
+
+            .video-item {
+                position: relative;
+                aspect-ratio: 16/9;
+                border-radius: 25px;
+                overflow: hidden;
+                cursor: pointer;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                background: linear-gradient(135deg, #f8f8f8, #eeeeee);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #8b7355;
+                font-size: 1.5rem;
+                text-align: center;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+                border: 3px solid rgba(139, 115, 85, 0.2);
+            }
+
+            .video-item::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 6px;
+                background: linear-gradient(90deg, #8b7355, #d4af37);
+                transform: scaleX(0);
+                transition: transform 0.4s ease;
+                border-radius: 25px 25px 0 0;
+            }
+
+            .video-item:hover::before {
+                transform: scaleX(1);
+            }
+
+            .video-item:hover {
+                transform: translateY(-15px) scale(1.05);
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+                border-color: rgba(139, 115, 85, 0.4);
             }
 
             /* Enhanced Nail Gallery Slider */
@@ -1750,6 +1860,7 @@
                 color: #ecf0f1;
             }
 
+            /* Mobile Responsive Design */
             @media (max-width: 768px) {
                 .nav-menu {
                     position: fixed;
@@ -1821,10 +1932,52 @@
                     gap: 2rem;
                 }
 
+                /* Mobile Nail Gallery - FIXED to show only 1 item per slide */
                 .nail-gallery-slide {
-                    grid-template-columns: 1fr;
-                    gap: 1rem;
-                    padding: 1.5rem;
+                    grid-template-columns: 1fr !important;
+                    grid-template-rows: 1fr !important;
+                    gap: 0 !important;
+                    padding: 2rem 1rem;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                }
+
+                /* Hide all nail gallery items except the first one on mobile */
+                .nail-gallery-item:not(:first-child) {
+                    display: none !important;
+                }
+
+                .nail-gallery-item:first-child {
+                    width: 100% !important;
+                    max-width: 300px !important;
+                    font-size: 1.3rem;
+                    padding: 3rem 1.5rem;
+                    min-height: 200px;
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    margin: 0 auto;
+                }
+
+                /* Video Gallery Mobile Enhancement - FIXED */
+                .video-gallery {
+                    margin: 3rem auto 0;
+                    padding: 0 1rem;
+                    max-width: 100%;
+                    width: 100%;
+                }
+
+                .video-item {
+                    font-size: 1.6rem;
+                    padding: 3rem 1.5rem;
+                    min-height: 280px;
+                    width: 100%;
+                    max-width: 100%;
+                    margin: 0;
+                    box-sizing: border-box;
                 }
 
                 .testimonial-card {
@@ -1898,6 +2051,41 @@
                     height: 300px;
                     margin: 0 1rem;
                 }
+
+                .floating-decoration {
+                    font-size: 1.5rem;
+                }
+
+                .nail-decoration {
+                    font-size: 2rem !important;
+                }
+            }
+
+            /* Additional mobile fixes for very small screens */
+            @media (max-width: 480px) {
+                .container {
+                    padding: 0 15px;
+                }
+
+                .video-gallery {
+                    padding: 0 15px;
+                }
+
+                .video-item {
+                    font-size: 1.4rem;
+                    padding: 2.5rem 1rem;
+                    min-height: 250px;
+                }
+
+                .nail-gallery-item {
+                    font-size: 1.1rem;
+                    padding: 2.5rem 1rem;
+                    min-height: 180px;
+                }
+
+                .gallery-section {
+                    padding: 80px 0;
+                }
             }
 
             @keyframes floatUp {
@@ -1916,9 +2104,45 @@
                     opacity: 0;
                 }
             }
+
+            /* Interactive cursor trail effect */
+            .cursor-trail {
+                position: fixed;
+                width: 20px;
+                height: 20px;
+                background: rgba(139, 115, 85, 0.3);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .cursor-trail.active {
+                opacity: 1;
+                animation: trailPulse 0.6s ease-out;
+            }
+
+            @keyframes trailPulse {
+                0% {
+                    transform: scale(0);
+                    opacity: 0.8;
+                }
+                50% {
+                    transform: scale(1.5);
+                    opacity: 0.4;
+                }
+                100% {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
         </style>
     </head>
     <body>
+        <!-- Cursor trail effect -->
+        <div class="cursor-trail" id="cursor-trail"></div>
+
         <!-- Navigation Menu -->
         <nav class="navbar" id="navbar">
             <div class="nav-container">
@@ -2082,7 +2306,7 @@
             </div>
         </section>
 
-        <!-- Spa Gallery Section -->
+        <!-- Enhanced Spa Gallery Section -->
         <section class="gallery-section" id="spa-gallery">
             <div class="container">
                 <h2
@@ -2091,17 +2315,10 @@
                 >
                     Our Beautiful Spa
                 </h2>
-                <div
-                    class="gallery-grid"
-                    style="
-                        grid-template-columns: 1fr;
-                        max-width: 600px;
-                        margin: 0 auto;
-                    "
-                >
-                    <div class="gallery-item" style="aspect-ratio: 16/9">
+                <div class="video-gallery">
+                    <div class="video-item">
                         <div
-                            data-text="📹 Spa Tour Video Upload your spa tour video here|📹 Video Giới Thiệu Spa Tải video giới thiệu spa của bạn tại đây"
+                            data-text="📹 Spa Tour Video<br/>Upload your spa tour video here|📹 Video Giới Thiệu Spa<br/>Tải video giới thiệu spa của bạn tại đây"
                         >
                             📹 Spa Tour Video<br />Upload your spa tour video
                             here
@@ -2127,21 +2344,21 @@
                         <div class="nail-gallery-slide">
                             <div class="nail-gallery-item">
                                 <div
-                                    data-text="Classic French 📸 Upload nail samples|French Cổ Điển 📸 Tải mẫu nail"
+                                    data-text="Classic French<br/>📸 Upload nail samples|French Cổ Điển<br/>📸 Tải mẫu nail"
                                 >
                                     Classic French<br />📸 Upload nail samples
                                 </div>
                             </div>
                             <div class="nail-gallery-item">
                                 <div
-                                    data-text="Gel Designs 📸 Upload your work|Thiết Kế Gel 📸 Tải tác phẩm của bạn"
+                                    data-text="Gel Designs<br/>📸 Upload your work|Thiết Kế Gel<br/>📸 Tải tác phẩm của bạn"
                                 >
                                     Gel Designs<br />📸 Upload your work
                                 </div>
                             </div>
                             <div class="nail-gallery-item">
                                 <div
-                                    data-text="Nail Art 📸 Upload creative designs|Nail Art 📸 Tải thiết kế sáng tạo"
+                                    data-text="Nail Art<br/>📸 Upload creative designs|Nail Art<br/>📸 Tải thiết kế sáng tạo"
                                 >
                                     Nail Art<br />📸 Upload creative designs
                                 </div>
@@ -2152,14 +2369,14 @@
                         <div class="nail-gallery-slide">
                             <div class="nail-gallery-item">
                                 <div
-                                    data-text="Seasonal Styles 📸 Upload themed nails|Phong Cách Theo Mùa 📸 Tải nail theo chủ đề"
+                                    data-text="Seasonal Styles<br/>📸 Upload themed nails|Phong Cách Theo Mùa<br/>📸 Tải nail theo chủ đề"
                                 >
                                     Seasonal Styles<br />📸 Upload themed nails
                                 </div>
                             </div>
                             <div class="nail-gallery-item">
                                 <div
-                                    data-text="Bridal Collection 📸 Upload wedding nails|Bộ Sưu Tập Cô Dâu 📸 Tải nail cưới"
+                                    data-text="Bridal Collection<br/>📸 Upload wedding nails|Bộ Sưu Tập Cô Dâu<br/>📸 Tải nail cưới"
                                 >
                                     Bridal Collection<br />📸 Upload wedding
                                     nails
@@ -2167,7 +2384,7 @@
                             </div>
                             <div class="nail-gallery-item">
                                 <div
-                                    data-text="Trendy Colors 📸 Upload latest trends|Màu Sắc Trendy 📸 Tải xu hướng mới"
+                                    data-text="Trendy Colors<br/>📸 Upload latest trends|Màu Sắc Trendy<br/>📸 Tải xu hướng mới"
                                 >
                                     Trendy Colors<br />📸 Upload latest trends
                                 </div>
@@ -2178,7 +2395,7 @@
                         <div class="nail-gallery-slide">
                             <div class="nail-gallery-item">
                                 <div
-                                    data-text="Pedicure Designs 📸 Upload foot nail art|Thiết Kế Pedicure 📸 Tải nail art chân"
+                                    data-text="Pedicure Designs<br/>📸 Upload foot nail art|Thiết Kế Pedicure<br/>📸 Tải nail art chân"
                                 >
                                     Pedicure Designs<br />📸 Upload foot nail
                                     art
@@ -2186,14 +2403,14 @@
                             </div>
                             <div class="nail-gallery-item">
                                 <div
-                                    data-text="Special Occasions 📸 Upload event nails|Dịp Đặc Biệt 📸 Tải nail sự kiện"
+                                    data-text="Special Occasions<br/>📸 Upload event nails|Dịp Đặc Biệt<br/>📸 Tải nail sự kiện"
                                 >
                                     Special Occasions<br />📸 Upload event nails
                                 </div>
                             </div>
                             <div class="nail-gallery-item">
                                 <div
-                                    data-text="3D Nail Art 📸 Upload 3D designs|Nail Art 3D 📸 Tải thiết kế 3D"
+                                    data-text="3D Nail Art<br/>📸 Upload 3D designs|Nail Art 3D<br/>📸 Tải thiết kế 3D"
                                 >
                                     3D Nail Art<br />📸 Upload 3D designs
                                 </div>
@@ -3213,7 +3430,7 @@
                             <p>
                                 <strong>📍 Address:</strong><br />
                                 46 Đường D5, Phường Thạnh Mỹ Tây<br />
-                                Quận 2, TP. Hồ Chí Minh
+                                TP. Hồ Chí Minh
                             </p>
                             <p>
                                 <strong>📞 Phone:</strong><br />
@@ -3340,6 +3557,137 @@
             let currentNailSlideIndex = 1;
             const totalNailSlides = 3;
 
+            // Enhanced interactive cursor trail
+            let mouseX = 0;
+            let mouseY = 0;
+            const cursorTrail = document.getElementById('cursor-trail');
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                cursorTrail.style.left = mouseX + 'px';
+                cursorTrail.style.top = mouseY + 'px';
+            });
+
+            document.addEventListener('click', (e) => {
+                cursorTrail.classList.add('active');
+                createSparkles(e.clientX, e.clientY);
+
+                setTimeout(() => {
+                    cursorTrail.classList.remove('active');
+                }, 600);
+            });
+
+            // Create sparkle effects on click
+            function createSparkles(x, y) {
+                for (let i = 0; i < 8; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.left = x + (Math.random() - 0.5) * 50 + 'px';
+                    sparkle.style.top = y + (Math.random() - 0.5) * 50 + 'px';
+                    sparkle.style.animationDelay = Math.random() * 0.3 + 's';
+
+                    document.body.appendChild(sparkle);
+
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 2000);
+                }
+            }
+
+            // Enhanced floating decorations
+            function createAdvancedFloatingDecoration() {
+                const decorations = [
+                    '💅',
+                    '💆‍♀️',
+                    '✨',
+                    '🌿',
+                    '💎',
+                    '🌸',
+                    '🦋',
+                    '🌟',
+                    '💐',
+                    '🎀',
+                ];
+                const decoration = document.createElement('div');
+                decoration.className = 'floating-decoration';
+                decoration.textContent =
+                    decorations[Math.floor(Math.random() * decorations.length)];
+
+                const size = Math.random() * 1.5 + 1.5;
+                decoration.style.fontSize = size + 'rem';
+                decoration.style.left = Math.random() * 100 + '%';
+                decoration.style.animationDuration =
+                    Math.random() * 10 + 10 + 's';
+                decoration.style.animationDelay = '0s';
+
+                document.body.appendChild(decoration);
+
+                setTimeout(() => {
+                    decoration.remove();
+                }, 15000);
+            }
+
+            // Enhanced interactive nail decorations
+            document
+                .querySelectorAll('.nail-decoration')
+                .forEach((decoration, index) => {
+                    decoration.addEventListener('click', (e) => {
+                        e.preventDefault();
+
+                        // Create burst effect
+                        for (let i = 0; i < 12; i++) {
+                            const burst = document.createElement('div');
+                            burst.textContent = decoration.textContent;
+                            burst.style.position = 'fixed';
+                            burst.style.left = e.clientX + 'px';
+                            burst.style.top = e.clientY + 'px';
+                            burst.style.fontSize = '1.5rem';
+                            burst.style.color = '#8b7355';
+                            burst.style.pointerEvents = 'none';
+                            burst.style.zIndex = '9999';
+                            burst.style.opacity = '0.8';
+
+                            const angle = (360 / 12) * i;
+                            const distance = 100;
+                            const endX =
+                                Math.cos((angle * Math.PI) / 180) * distance;
+                            const endY =
+                                Math.sin((angle * Math.PI) / 180) * distance;
+
+                            burst.style.animation = `burstAnimation 1.5s ease-out forwards`;
+                            burst.style.setProperty('--endX', endX + 'px');
+                            burst.style.setProperty('--endY', endY + 'px');
+
+                            document.body.appendChild(burst);
+
+                            setTimeout(() => {
+                                burst.remove();
+                            }, 1500);
+                        }
+
+                        // Add to CSS
+                        if (!document.querySelector('#burst-style')) {
+                            const style = document.createElement('style');
+                            style.id = 'burst-style';
+                            style.textContent = `
+                            @keyframes burstAnimation {
+                                0% {
+                                    transform: translate(0, 0) scale(1) rotate(0deg);
+                                    opacity: 0.8;
+                                }
+                                100% {
+                                    transform: translate(var(--endX), var(--endY)) scale(0.3) rotate(360deg);
+                                    opacity: 0;
+                                }
+                            }
+                        `;
+                            document.head.appendChild(style);
+                        }
+                    });
+                });
+
             // Detect browser language on page load
             function detectBrowserLanguage() {
                 const browserLang =
@@ -3366,94 +3714,16 @@
                 document.querySelectorAll('[data-text]').forEach((element) => {
                     const texts = element.getAttribute('data-text').split('|');
                     if (lang === 'en' && texts[0]) {
-                        element.textContent = texts[0];
-                        if (element.innerHTML.includes('<br>')) {
-                            element.innerHTML = texts[0]
-                                .replace(
-                                    'Upload your spa tour video here',
-                                    '<br />Upload your spa tour video here'
-                                )
-                                .replace(
-                                    'Upload nail samples',
-                                    '<br />📸 Upload nail samples'
-                                )
-                                .replace(
-                                    'Upload your work',
-                                    '<br />📸 Upload your work'
-                                )
-                                .replace(
-                                    'Upload creative designs',
-                                    '<br />📸 Upload creative designs'
-                                )
-                                .replace(
-                                    'Upload themed nails',
-                                    '<br />📸 Upload themed nails'
-                                )
-                                .replace(
-                                    'Upload wedding nails',
-                                    '<br />📸 Upload wedding nails'
-                                )
-                                .replace(
-                                    'Upload latest trends',
-                                    '<br />📸 Upload latest trends'
-                                )
-                                .replace(
-                                    'Upload foot nail art',
-                                    '<br />📸 Upload foot nail art'
-                                )
-                                .replace(
-                                    'Upload event nails',
-                                    '<br />📸 Upload event nails'
-                                )
-                                .replace(
-                                    'Upload 3D designs',
-                                    '<br />📸 Upload 3D designs'
-                                );
+                        if (element.innerHTML.includes('<br/>')) {
+                            element.innerHTML = texts[0];
+                        } else {
+                            element.textContent = texts[0];
                         }
                     } else if (lang === 'vi' && texts[1]) {
-                        element.textContent = texts[1];
-                        if (element.innerHTML.includes('<br>')) {
-                            element.innerHTML = texts[1]
-                                .replace(
-                                    'Tải video giới thiệu spa của bạn tại đây',
-                                    '<br />Tải video giới thiệu spa của bạn tại đây'
-                                )
-                                .replace(
-                                    'Tải mẫu nail',
-                                    '<br />📸 Tải mẫu nail'
-                                )
-                                .replace(
-                                    'Tải tác phẩm của bạn',
-                                    '<br />📸 Tải tác phẩm của bạn'
-                                )
-                                .replace(
-                                    'Tải thiết kế sáng tạo',
-                                    '<br />📸 Tải thiết kế sáng tạo'
-                                )
-                                .replace(
-                                    'Tải nail theo chủ đề',
-                                    '<br />📸 Tải nail theo chủ đề'
-                                )
-                                .replace(
-                                    'Tải nail cưới',
-                                    '<br />📸 Tải nail cưới'
-                                )
-                                .replace(
-                                    'Tải xu hướng mới',
-                                    '<br />📸 Tải xu hướng mới'
-                                )
-                                .replace(
-                                    'Tải nail art chân',
-                                    '<br />📸 Tải nail art chân'
-                                )
-                                .replace(
-                                    'Tải nail sự kiện',
-                                    '<br />📸 Tải nail sự kiện'
-                                )
-                                .replace(
-                                    'Tải thiết kế 3D',
-                                    '<br />📸 Tải thiết kế 3D'
-                                );
+                        if (element.innerHTML.includes('<br/>')) {
+                            element.innerHTML = texts[1];
+                        } else {
+                            element.textContent = texts[1];
                         }
                     }
                 });
@@ -3580,7 +3850,7 @@
                         this.getAttribute('href')
                     );
                     if (target) {
-                        const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                        const offsetTop = target.offsetTop - 80;
                         window.scrollTo({
                             top: offsetTop,
                             behavior: 'smooth',
@@ -3616,51 +3886,19 @@
                     observer.observe(card);
                 });
 
-            // Add floating nail decorations dynamically
-            function createFloatingDecoration() {
-                const decorations = ['💅', '💆‍♀️', '✨', '🌿', '💎', '🌸'];
-                const decoration = document.createElement('div');
-                decoration.className = 'nail-decoration';
-                decoration.textContent =
-                    decorations[Math.floor(Math.random() * decorations.length)];
-
-                const size = Math.random() * 1.5 + 1.5;
-                decoration.style.fontSize = size + 'rem';
-                decoration.style.left = Math.random() * 100 + '%';
-                decoration.style.top = '100%';
-                decoration.style.color = '#8B7355';
-                decoration.style.animationDuration =
-                    Math.random() * 8 + 8 + 's';
-                decoration.style.animationDelay = '0s';
-                decoration.style.position = 'absolute';
-                decoration.style.pointerEvents = 'none';
-                decoration.style.animation = 'floatUp 10s linear forwards';
-                decoration.style.opacity = '0.3';
-
-                const decorationContainer =
-                    document.querySelector('.nail-decorations');
-                if (decorationContainer) {
-                    decorationContainer.appendChild(decoration);
-                }
-
-                setTimeout(() => {
-                    decoration.remove();
-                }, 10000);
-            }
-
             // Create new floating decorations periodically
-            setInterval(createFloatingDecoration, 4000);
+            setInterval(createAdvancedFloatingDecoration, 3000);
 
             // Initialize with some decorations
-            setTimeout(createFloatingDecoration, 1000);
-            setTimeout(createFloatingDecoration, 2000);
-            setTimeout(createFloatingDecoration, 3000);
+            setTimeout(createAdvancedFloatingDecoration, 1000);
+            setTimeout(createAdvancedFloatingDecoration, 2000);
+            setTimeout(createAdvancedFloatingDecoration, 3000);
 
             // Add parallax effect to hero section
             window.addEventListener('scroll', () => {
                 const scrolled = window.pageYOffset;
                 const parallax = document.querySelector('.beige-gradient-bg');
-                const speed = scrolled * 0.5;
+                const speed = scrolled * 0.3;
 
                 if (parallax) {
                     parallax.style.transform = `translateY(${speed}px)`;

@@ -4,6 +4,38 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>OnOn Nails Bar - Premium Nails & Hair Wash</title>
+        <meta name="description" content="OnOn Nails Bar offers premium nail care and hair wash services in Ho Chi Minh City. Expert technicians, luxury treatments, and a relaxing spa experience." />
+        <meta name="keywords" content="nail salon, hair wash, spa, manicure, pedicure, nail art, Ho Chi Minh City, beauty salon" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="OnOn Nails Bar - Premium Nails & Hair Wash" />
+        <meta property="og:description" content="Experience luxury nail care and relaxing hair wash services. Book your appointment today!" />
+        <meta property="og:image" content="/images/og-image.jpg" />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="OnOn Nails Bar - Premium Nails & Hair Wash" />
+        <meta name="twitter:description" content="Experience luxury nail care and relaxing hair wash services. Book your appointment today!" />
+
+        <!-- Structured Data -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BeautySalon",
+            "name": "OnOn Nails Bar",
+            "description": "Premium nail care and hair wash services",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "103, Nguyen Thi Minh Khai Street, District 3",
+                "addressLocality": "Ho Chi Minh City",
+                "addressCountry": "VN"
+            },
+            "telephone": "+84 123 456 789",
+            "priceRange": "$$",
+            "openingHours": "Mo-Su 09:00-21:00"
+        }
+        </script>
         <style>
             * {
                 margin: 0;
@@ -16,6 +48,36 @@
                 line-height: 1.6;
                 color: #333;
                 overflow-x: hidden;
+            }
+
+            /* Ensure content is visible without JavaScript */
+            .service-card,
+            .menu-category,
+            .contact-card,
+            .why-choose-card,
+            .nail-gallery-item {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Only animate when JS is loaded */
+            .js-loaded .service-card,
+            .js-loaded .menu-category,
+            .js-loaded .contact-card,
+            .js-loaded .why-choose-card,
+            .js-loaded .nail-gallery-item {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.6s ease;
+            }
+
+            .js-loaded .service-card.visible,
+            .js-loaded .menu-category.visible,
+            .js-loaded .contact-card.visible,
+            .js-loaded .why-choose-card.visible,
+            .js-loaded .nail-gallery-item.visible {
+                opacity: 1;
+                transform: translateY(0);
             }
 
             /* Navigation Menu */
@@ -89,6 +151,12 @@
                 width: 100%;
             }
 
+            .nav-menu li a:focus {
+                outline: 2px solid #8b7355;
+                outline-offset: 4px;
+                border-radius: 2px;
+            }
+
             .language-switch {
                 display: flex;
                 background: rgba(139, 115, 85, 0.1);
@@ -110,6 +178,11 @@
             .lang-btn.active {
                 background: #8b7355;
                 color: white;
+            }
+
+            .lang-btn:focus {
+                outline: 2px solid #8b7355;
+                outline-offset: 2px;
             }
 
             .mobile-menu-toggle {
@@ -358,7 +431,7 @@
                 max-width: 600px;
                 margin-left: auto;
                 margin-right: auto;
-                color: #666;
+                color: #555;
             }
 
             .cta-button {
@@ -403,6 +476,11 @@
                 background: #a08266;
             }
 
+            .cta-button:focus {
+                outline: 3px solid #8b7355;
+                outline-offset: 4px;
+            }
+
             /* REDESIGNED Why Choose Us Section */
             .why-choose-us {
                 padding: 120px 0;
@@ -443,7 +521,7 @@
             .section-subtitle {
                 text-align: center;
                 font-size: 1.2rem;
-                color: #666;
+                color: #555;
                 margin-bottom: 4rem;
                 max-width: 600px;
                 margin-left: auto;
@@ -566,7 +644,7 @@
             }
 
             .why-choose-card p {
-                color: #666;
+                color: #555;
                 line-height: 1.8;
                 font-weight: 400;
                 font-size: 1rem;
@@ -750,24 +828,43 @@
             }
 
             .nail-gallery-dot {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                background: transparent;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border: none;
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nail-gallery-dot::before {
+                content: '';
                 width: 16px;
                 height: 16px;
                 border-radius: 50%;
                 background: rgba(139, 115, 85, 0.4);
-                cursor: pointer;
                 transition: all 0.3s ease;
                 border: 2px solid transparent;
             }
 
-            .nail-gallery-dot.active {
+            .nail-gallery-dot.active::before {
                 background: #8b7355;
                 transform: scale(1.3);
                 border-color: rgba(139, 115, 85, 0.3);
             }
 
-            .nail-gallery-dot:hover:not(.active) {
+            .nail-gallery-dot:hover:not(.active)::before {
                 background: rgba(139, 115, 85, 0.6);
                 transform: scale(1.1);
+            }
+
+            .nail-gallery-dot:focus {
+                outline: 2px solid #8b7355;
+                outline-offset: 2px;
             }
 
             /* Enhanced Menu Section */
@@ -976,7 +1073,7 @@
 
             .item-description {
                 font-size: 0.9rem;
-                color: #666;
+                color: #555;
                 line-height: 1.4;
             }
 
@@ -1121,7 +1218,7 @@
             }
 
             .service-card p {
-                color: #666;
+                color: #555;
                 line-height: 1.8;
                 position: relative;
                 z-index: 2;
@@ -1209,7 +1306,7 @@
                 font-style: italic;
                 max-width: 700px;
                 font-weight: 300;
-                color: #666;
+                color: #555;
             }
 
             .testimonial-author {
@@ -1250,30 +1347,54 @@
                 box-shadow: 0 5px 15px rgba(139, 115, 85, 0.3);
             }
 
+            .slider-btn:focus {
+                outline: 3px solid #8b7355;
+                outline-offset: 3px;
+            }
+
             .slider-dots {
                 display: flex;
                 gap: 1rem;
             }
 
             .dot {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                background: transparent;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border: none;
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .dot::before {
+                content: '';
                 width: 16px;
                 height: 16px;
                 border-radius: 50%;
                 background: rgba(139, 115, 85, 0.4);
-                cursor: pointer;
                 transition: all 0.3s ease;
                 border: 2px solid transparent;
             }
 
-            .dot.active {
+            .dot.active::before {
                 background: #8b7355;
                 transform: scale(1.3);
                 border-color: rgba(139, 115, 85, 0.3);
             }
 
-            .dot:hover:not(.active) {
+            .dot:hover:not(.active)::before {
                 background: rgba(139, 115, 85, 0.6);
                 transform: scale(1.1);
+            }
+
+            .dot:focus {
+                outline: 2px solid #8b7355;
+                outline-offset: 2px;
             }
 
             /* REDESIGNED Contact Section */
@@ -1321,7 +1442,7 @@
 
             .contact-subtitle {
                 font-size: 1.3rem;
-                color: #666;
+                color: #555;
                 margin-bottom: 5rem;
                 max-width: 700px;
                 margin-left: auto;
@@ -1436,7 +1557,7 @@
             }
 
             .contact-card p {
-                color: #666;
+                color: #555;
                 line-height: 1.6;
                 position: relative;
                 z-index: 2;
@@ -1932,33 +2053,19 @@
                     gap: 2rem;
                 }
 
-                /* Mobile Nail Gallery - FIXED to show only 1 item per slide */
+                /* Mobile Nail Gallery - Properly show all items in responsive grid */
                 .nail-gallery-slide {
-                    grid-template-columns: 1fr !important;
-                    grid-template-rows: 1fr !important;
-                    gap: 0 !important;
+                    grid-template-columns: 1fr;
+                    gap: 1.5rem;
                     padding: 2rem 1rem;
-                    display: flex !important;
-                    flex-direction: column !important;
-                    align-items: center !important;
-                    justify-content: center !important;
                 }
 
-                /* Hide all nail gallery items except the first one on mobile */
-                .nail-gallery-item:not(:first-child) {
-                    display: none !important;
-                }
-
-                .nail-gallery-item:first-child {
-                    width: 100% !important;
-                    max-width: 300px !important;
+                .nail-gallery-item {
+                    width: 100%;
+                    max-width: 350px;
                     font-size: 1.3rem;
                     padding: 3rem 1.5rem;
                     min-height: 200px;
-                    display: flex !important;
-                    align-items: center;
-                    justify-content: center;
-                    text-align: center;
                     margin: 0 auto;
                 }
 
@@ -2011,8 +2118,30 @@
 
                 .dot,
                 .nail-gallery-dot {
+                    width: 44px;
+                    height: 44px;
+                    /* Keep visual size small but increase touch target */
+                }
+
+                .dot::before,
+                .nail-gallery-dot::before {
+                    content: '';
+                    position: absolute;
                     width: 14px;
                     height: 14px;
+                    border-radius: 50%;
+                    background: rgba(139, 115, 85, 0.3);
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    transition: all 0.3s ease;
+                }
+
+                .dot.active-dot::before,
+                .nail-gallery-dot.active-dot::before {
+                    background: #8b7355;
+                    width: 16px;
+                    height: 16px;
                 }
 
                 .footer-content {
@@ -2225,6 +2354,7 @@
                     <a
                         href="https://booking.easysalon.vn/ononnailsbar"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="cta-button"
                         data-text="Book Your Session Today|Đặt Lịch Ngay Hôm Nay"
                         >Book Your Session Today</a
@@ -3272,6 +3402,7 @@
                             <a
                                 href="https://maps.app.goo.gl/Ba8ijncbQd6veEGK9"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 ><p
                                     style="
                                         margin-top: 1rem;
@@ -3351,6 +3482,7 @@
                     <a
                         href="https://booking.easysalon.vn/ononnailsbar"
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="booking-cta"
                         data-text="Book Your Appointment Now|Đặt Lịch Hẹn Ngay"
                     >
@@ -3474,6 +3606,7 @@
                                 <a
                                     href="https://www.facebook.com/ononnailsbar"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                     class="social-link"
                                     aria-label="Facebook"
                                 >
@@ -3489,6 +3622,7 @@
                                 <a
                                     href="https://www.instagram.com/onon.nailsbar"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                     class="social-link"
                                     aria-label="Instagram"
                                 >
@@ -3504,6 +3638,7 @@
                                 <a
                                     href="https://www.tiktok.com/@onon.nails.bar"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                     class="social-link"
                                     aria-label="TikTok"
                                 >
@@ -3539,6 +3674,9 @@
         </footer>
 
         <script>
+            // Mark that JavaScript is loaded for CSS animations
+            document.body.classList.add('js-loaded');
+
             // Language translations object
             const translations = {
                 en: {
@@ -3549,13 +3687,22 @@
                 },
             };
 
-            let currentLang = 'en';
+            // Load saved language preference or detect browser language
+            let currentLang = localStorage.getItem('preferred-language') ||
+                             (navigator.language?.startsWith('vi') ? 'vi' : 'en');
             let currentSlideIndex = 1;
             const totalSlides = 5;
 
             // Nail Gallery Slider Variables
             let currentNailSlideIndex = 1;
             const totalNailSlides = 3;
+
+            // Store interval IDs for cleanup
+            let testimonialInterval = null;
+            let nailGalleryInterval = null;
+            let decorationInterval = null;
+            let activeDecorations = 0;
+            const maxDecorations = 5;
 
             // Enhanced interactive cursor trail
             let mouseX = 0;
@@ -3579,14 +3726,14 @@
                 }, 600);
             });
 
-            // Create sparkle effects on click
+            // Create sparkle effects on click (reduced for performance)
             function createSparkles(x, y) {
-                for (let i = 0; i < 8; i++) {
+                for (let i = 0; i < 4; i++) {
                     const sparkle = document.createElement('div');
                     sparkle.className = 'sparkle';
-                    sparkle.style.left = x + (Math.random() - 0.5) * 50 + 'px';
-                    sparkle.style.top = y + (Math.random() - 0.5) * 50 + 'px';
-                    sparkle.style.animationDelay = Math.random() * 0.3 + 's';
+                    sparkle.style.left = x + (Math.random() - 0.5) * 40 + 'px';
+                    sparkle.style.top = y + (Math.random() - 0.5) * 40 + 'px';
+                    sparkle.style.animationDelay = Math.random() * 0.2 + 's';
 
                     document.body.appendChild(sparkle);
 
@@ -3596,8 +3743,13 @@
                 }
             }
 
-            // Enhanced floating decorations
+            // Enhanced floating decorations with memory leak fix
             function createAdvancedFloatingDecoration() {
+                // Limit the number of active decorations
+                if (activeDecorations >= maxDecorations) {
+                    return;
+                }
+
                 const decorations = [
                     '💅',
                     '💆‍♀️',
@@ -3622,10 +3774,12 @@
                     Math.random() * 10 + 10 + 's';
                 decoration.style.animationDelay = '0s';
 
+                activeDecorations++;
                 document.body.appendChild(decoration);
 
                 setTimeout(() => {
                     decoration.remove();
+                    activeDecorations--;
                 }, 15000);
             }
 
@@ -3636,27 +3790,27 @@
                     decoration.addEventListener('click', (e) => {
                         e.preventDefault();
 
-                        // Create burst effect
-                        for (let i = 0; i < 12; i++) {
+                        // Create burst effect (reduced for performance)
+                        for (let i = 0; i < 6; i++) {
                             const burst = document.createElement('div');
                             burst.textContent = decoration.textContent;
                             burst.style.position = 'fixed';
                             burst.style.left = e.clientX + 'px';
                             burst.style.top = e.clientY + 'px';
-                            burst.style.fontSize = '1.5rem';
+                            burst.style.fontSize = '1.2rem';
                             burst.style.color = '#8b7355';
                             burst.style.pointerEvents = 'none';
                             burst.style.zIndex = '9999';
-                            burst.style.opacity = '0.8';
+                            burst.style.opacity = '0.7';
 
-                            const angle = (360 / 12) * i;
-                            const distance = 100;
+                            const angle = (360 / 6) * i;
+                            const distance = 80;
                             const endX =
                                 Math.cos((angle * Math.PI) / 180) * distance;
                             const endY =
                                 Math.sin((angle * Math.PI) / 180) * distance;
 
-                            burst.style.animation = `burstAnimation 1.5s ease-out forwards`;
+                            burst.style.animation = `burstAnimation 1.2s ease-out forwards`;
                             burst.style.setProperty('--endX', endX + 'px');
                             burst.style.setProperty('--endY', endY + 'px');
 
@@ -3664,7 +3818,7 @@
 
                             setTimeout(() => {
                                 burst.remove();
-                            }, 1500);
+                            }, 1200);
                         }
 
                         // Add to CSS
@@ -3702,6 +3856,9 @@
             function switchLanguage(lang) {
                 currentLang = lang;
 
+                // Save preference to localStorage
+                localStorage.setItem('preferred-language', lang);
+
                 // Update button states
                 document.querySelectorAll('.lang-btn').forEach((btn) => {
                     btn.classList.remove('active');
@@ -3714,13 +3871,15 @@
                 document.querySelectorAll('[data-text]').forEach((element) => {
                     const texts = element.getAttribute('data-text').split('|');
                     if (lang === 'en' && texts[0]) {
-                        if (element.innerHTML.includes('<br/>')) {
+                        // Check for both <br/> and <br /> and other HTML tags
+                        if (/<br\s*\/?>|<[^>]+>/.test(element.innerHTML)) {
                             element.innerHTML = texts[0];
                         } else {
                             element.textContent = texts[0];
                         }
                     } else if (lang === 'vi' && texts[1]) {
-                        if (element.innerHTML.includes('<br/>')) {
+                        // Check for both <br/> and <br /> and other HTML tags
+                        if (/<br\s*\/?>|<[^>]+>/.test(element.innerHTML)) {
                             element.innerHTML = texts[1];
                         } else {
                             element.textContent = texts[1];
@@ -3832,13 +3991,13 @@
                 showNailSlide(currentNailSlideIndex);
             }
 
-            // Auto-play testimonial slider
-            setInterval(() => {
+            // Auto-play testimonial slider (store reference for cleanup)
+            testimonialInterval = setInterval(() => {
                 nextSlide();
             }, 5000);
 
-            // Auto-play nail gallery slider
-            setInterval(() => {
+            // Auto-play nail gallery slider (store reference for cleanup)
+            nailGalleryInterval = setInterval(() => {
                 nextNailSlide();
             }, 7000);
 
@@ -3859,6 +4018,19 @@
                 });
             });
 
+            // Debounce function for performance optimization
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
             // Intersection Observer for animations
             const observerOptions = {
                 threshold: 0.1,
@@ -3868,8 +4040,7 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('visible');
                     }
                 });
             }, observerOptions);
@@ -3880,30 +4051,28 @@
                     '.service-card, .menu-category, .contact-card, .why-choose-card, .nail-gallery-item'
                 )
                 .forEach((card) => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(30px)';
-                    card.style.transition = 'all 0.6s ease';
                     observer.observe(card);
                 });
 
-            // Create new floating decorations periodically
-            setInterval(createAdvancedFloatingDecoration, 3000);
+            // Create new floating decorations periodically (store reference)
+            decorationInterval = setInterval(createAdvancedFloatingDecoration, 5000);
 
-            // Initialize with some decorations
-            setTimeout(createAdvancedFloatingDecoration, 1000);
+            // Initialize with some decorations (reduced frequency)
             setTimeout(createAdvancedFloatingDecoration, 2000);
-            setTimeout(createAdvancedFloatingDecoration, 3000);
+            setTimeout(createAdvancedFloatingDecoration, 4000);
 
-            // Add parallax effect to hero section
-            window.addEventListener('scroll', () => {
+            // Reduced parallax effect with debouncing
+            const handleParallax = debounce(() => {
                 const scrolled = window.pageYOffset;
                 const parallax = document.querySelector('.beige-gradient-bg');
-                const speed = scrolled * 0.3;
+                const speed = scrolled * 0.15; // Reduced intensity
 
                 if (parallax) {
                     parallax.style.transform = `translateY(${speed}px)`;
                 }
-            });
+            }, 10);
+
+            window.addEventListener('scroll', handleParallax, { passive: true });
 
             // Add hover effects to social links
             document.querySelectorAll('.social-link').forEach((link) => {
@@ -3922,8 +4091,8 @@
                 card.style.animationDelay = `${index * 0.2}s`;
             });
 
-            // Active navigation highlight
-            window.addEventListener('scroll', () => {
+            // Active navigation highlight with debouncing
+            const handleNavHighlight = debounce(() => {
                 const sections = document.querySelectorAll('section[id]');
                 const navLinks = document.querySelectorAll(
                     '.nav-menu a[href^="#"]'
@@ -3947,11 +4116,19 @@
                         link.classList.add('active');
                     }
                 });
-            });
+            }, 100);
+
+            window.addEventListener('scroll', handleNavHighlight, { passive: true });
 
             // Initialize page
             document.addEventListener('DOMContentLoaded', function () {
-                detectBrowserLanguage();
+                // Use saved preference or detect browser language
+                const savedLang = localStorage.getItem('preferred-language');
+                if (savedLang) {
+                    switchLanguage(savedLang);
+                } else {
+                    detectBrowserLanguage();
+                }
             });
         </script>
     </body>

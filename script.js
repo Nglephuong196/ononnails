@@ -38,6 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('onon-lang', currentLang);
         updateLanguage();
         updateLangToggle();
+        // Update testimonials for new language
+        if (window.updateTestimonialsForLanguage) {
+            window.updateTestimonialsForLanguage();
+        }
     };
     
     function updateLanguage() {
@@ -169,14 +173,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // ===== Testimonials =====
+    // ===== Testimonials (Language-Filtered) =====
     let currentTestimonial = 0;
-    const testimonials = document.querySelectorAll('.testimonial-card');
-    const totalTestimonials = testimonials.length;
+    const allTestimonials = document.querySelectorAll('.testimonial-card');
     const testimonialDotsContainer = document.getElementById('testimonialDots');
-    
-    if (testimonialDotsContainer && totalTestimonials > 0) {
-        for (let i = 0; i < totalTestimonials; i++) {
+    let filteredTestimonials = [];
+    let testimonialInterval;
+
+    function getFilteredTestimonials() {
+        return Array.from(allTestimonials).filter(card =>
+            card.getAttribute('data-review-lang') === currentLang
+        );
+    }
+
+    function initTestimonialDots() {
+        if (!testimonialDotsContainer) return;
+        testimonialDotsContainer.innerHTML = '';
+        filteredTestimonials = getFilteredTestimonials();
+
+        for (let i = 0; i < filteredTestimonials.length; i++) {
             const dot = document.createElement('span');
             dot.classList.add('dot');
             if (i === 0) dot.classList.add('active');
@@ -184,48 +199,64 @@ document.addEventListener('DOMContentLoaded', () => {
             testimonialDotsContainer.appendChild(dot);
         }
     }
-    
+
+    window.updateTestimonialsForLanguage = function() {
+        currentTestimonial = 0;
+        filteredTestimonials = getFilteredTestimonials();
+        initTestimonialDots();
+        updateTestimonials();
+        restartTestimonialAutoplay();
+    };
+
     window.moveTestimonial = function(direction) {
+        filteredTestimonials = getFilteredTestimonials();
+        if (filteredTestimonials.length === 0) return;
+
         currentTestimonial += direction;
-        if (currentTestimonial >= totalTestimonials) currentTestimonial = 0;
-        if (currentTestimonial < 0) currentTestimonial = totalTestimonials - 1;
+        if (currentTestimonial >= filteredTestimonials.length) currentTestimonial = 0;
+        if (currentTestimonial < 0) currentTestimonial = filteredTestimonials.length - 1;
         updateTestimonials();
     };
-    
+
     function goToTestimonial(index) {
         currentTestimonial = index;
         updateTestimonials();
     }
-    
+
     function updateTestimonials() {
-        testimonials.forEach((card, i) => {
-            card.classList.toggle('active', i === currentTestimonial);
-        });
+        filteredTestimonials = getFilteredTestimonials();
+        // Hide all testimonials first
+        allTestimonials.forEach(card => card.classList.remove('active'));
+        // Show only the current one from filtered list
+        if (filteredTestimonials[currentTestimonial]) {
+            filteredTestimonials[currentTestimonial].classList.add('active');
+        }
         document.querySelectorAll('#testimonialDots .dot').forEach((dot, i) => {
             dot.classList.toggle('active', i === currentTestimonial);
         });
     }
-    
-    // Auto-play testimonials
-    let testimonialInterval = setInterval(() => {
-        if (totalTestimonials > 0) {
-            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
-            updateTestimonials();
-        }
-    }, 5000);
-    
+
+    function restartTestimonialAutoplay() {
+        clearInterval(testimonialInterval);
+        testimonialInterval = setInterval(() => {
+            filteredTestimonials = getFilteredTestimonials();
+            if (filteredTestimonials.length > 0) {
+                currentTestimonial = (currentTestimonial + 1) % filteredTestimonials.length;
+                updateTestimonials();
+            }
+        }, 5000);
+    }
+
+    // Initialize testimonials
+    initTestimonialDots();
+    updateTestimonials();
+    restartTestimonialAutoplay();
+
     // Pause on hover
     const testimonialCarousel = document.querySelector('.testimonial-carousel');
     if (testimonialCarousel) {
         testimonialCarousel.addEventListener('mouseenter', () => clearInterval(testimonialInterval));
-        testimonialCarousel.addEventListener('mouseleave', () => {
-            testimonialInterval = setInterval(() => {
-                if (totalTestimonials > 0) {
-                    currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
-                    updateTestimonials();
-                }
-            }, 5000);
-        });
+        testimonialCarousel.addEventListener('mouseleave', () => restartTestimonialAutoplay());
     }
     
     // ===== Smooth Scroll =====

@@ -303,5 +303,72 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     }
     
+    // ===== Motion Animations =====
+    if (window.motion) {
+        const { animate, inView, stagger } = window.motion;
+
+        // Hero Section Entry Animations
+        animate(
+            ".hero-badge",
+            { opacity: [0, 1], y: [20, 0] },
+            { duration: 0.8, delay: 0.2, ease: "easeOut" }
+        );
+        animate(
+            ".hero h1",
+            { opacity: [0, 1], y: [30, 0] },
+            { duration: 1, delay: 0.4, ease: "easeOut" }
+        );
+        animate(
+            ".hero-subtitle",
+            { opacity: [0, 1], y: [20, 0] },
+            { duration: 0.8, delay: 0.6, ease: "easeOut" }
+        );
+        animate(
+            ".hero-buttons",
+            { opacity: [0, 1], y: [20, 0] },
+            { duration: 0.8, delay: 0.8, ease: "easeOut" }
+        );
+        animate(
+            ".hero-feature",
+            { opacity: [0, 1], scale: [0.8, 1] },
+            { duration: 0.5, delay: stagger(0.2, { startDelay: 1.2 }), ease: "backOut" }
+        );
+
+        // Scroll Reveal Animations
+        inView(".section-header", (info) => {
+            animate(
+                info.target,
+                { opacity: [0, 1], y: [50, 0] },
+                { duration: 0.8, ease: "easeOut" }
+            );
+        });
+
+        inView(".combo-card", (info) => {
+            animate(
+                info.target,
+                { opacity: [0, 1], scale: [0.9, 1], y: [30, 0] },
+                { duration: 0.6, ease: "easeOut" }
+            );
+        });
+
+        inView(".accordion-item", (info) => {
+            animate(
+                info.target,
+                { opacity: [0, 1], x: [-20, 0] },
+                { duration: 0.5, ease: "easeOut" }
+            );
+        });
+
+        // Hover Effect using Motion
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                animate(btn, { scale: 1.05 }, { duration: 0.2 });
+            });
+            btn.addEventListener('mouseleave', () => {
+                animate(btn, { scale: 1 }, { duration: 0.2 });
+            });
+        });
+    }
+
     console.log('🌸 OnOn Nails Bar Loaded | Lang:', currentLang.toUpperCase());
 });
